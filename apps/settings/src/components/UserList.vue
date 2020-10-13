@@ -504,7 +504,7 @@ export default {
 
 		resetForm() {
 			// revert form to original state
-			this.newUser = Object.assign({}, newUser)
+			this.newUser = Object.assign({}, newUser);
 
 			/**
 			 * Init default language from server data. The use of this.settings
@@ -554,16 +554,11 @@ export default {
 				})
 		},
 		setNewUserDefaultGroup(value) {
-			if (value && value.length > 0) {
-				// setting new user default group to the current selected one
-				const currentGroup = this.groups.find(group => group.id === value)
-				if (currentGroup) {
-					this.newUser.groups = [currentGroup]
-					return
-				}
-			}
-			// fallback, empty selected group
-			this.newUser.groups = []
+			const currentGroups = this
+				.groups
+				.filter(group => (value && value.length > 0 && group.id === value) || group.id === 'local')
+
+			this.newUser.groups = currentGroups;
 		},
 
 		/**
