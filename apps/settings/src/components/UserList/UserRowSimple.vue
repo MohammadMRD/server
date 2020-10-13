@@ -3,6 +3,16 @@
 		class="row"
 		:class="{'disabled': loading.delete || loading.disable}"
 		:data-id="user.id">
+		<div class="selection" style="padding: auto 10px;">
+			<input :id="'select-user-'+user.id"
+				type="checkbox"
+				class="checkbox"
+				:checked="selected"
+				@change="toggleSelect(user)">
+			<label :for="'select-user-'+user.id">
+				<span class="hidden-visually">Select</span>
+			</label>
+		</div>
 		<div class="avatar" :class="{'icon-loading-small': loading.delete || loading.disable || loading.wipe}">
 			<img v-if="!loading.delete && !loading.disable && !loading.wipe"
 				alt=""
@@ -19,6 +29,9 @@
 					{{ user.displayname }}
 				</div>
 			</div>
+		</div>
+		<div class="main-groups">
+			{{ userMainGroupsLabels }}
 		</div>
 		<div />
 		<div class="mailAddress">
@@ -132,11 +145,21 @@ export default {
 			type: Object,
 			required: true,
 		},
+		selected: {
+			type: Boolean,
+			required: true,
+		},
 	},
 	computed: {
 		userGroupsLabels() {
 			return this.userGroups
 				.map(group => group.name)
+				.join(', ')
+		},
+		userMainGroupsLabels() {
+			return this.userGroups
+				.map(g => g.name)
+				.filter(g => ['active', 'guest', 'local'].includes(g))
 				.join(', ')
 		},
 		userSubAdminsGroupsLabels() {
@@ -170,6 +193,9 @@ export default {
 		toggleEdit() {
 			this.$emit('update:editing', true)
 		},
+		toggleSelect(user) {
+			this.$emit('toggleSelect', user)
+		},
 	},
 }
 </script>
@@ -179,7 +205,7 @@ export default {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-}
+	}
 	.icon-more {
 		background-color: var(--color-main-background);
 		border: 0;
