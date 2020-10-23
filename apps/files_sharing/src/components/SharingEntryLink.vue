@@ -213,8 +213,10 @@
 							? t('files_sharing', 'Expiration date (enforced)')
 							: t('files_sharing', 'Set expiration date') }}
 					</ActionCheckbox>
-					<ActionInput v-if="hasExpirationDate"
+					<ActionButton
+						v-if="hasExpirationDate"
 						ref="expireDate"
+						@click="showExpireDatePciker = true"
 						v-tooltip.auto="{
 							content: errors.expireDate,
 							show: errors.expireDate,
@@ -222,18 +224,12 @@
 							defaultContainer: '#app-sidebar'
 						}"
 						class="share-link-expire-date"
-						:class="{ error: errors.expireDate}"
-						:disabled="saving"
-						:first-day-of-week="firstDay"
-						:lang="lang"
-						:value="share.expireDate"
-						value-type="format"
 						icon="icon-calendar-dark"
-						type="date"
-						:disabled-date="disabledDate"
-						@update:value="onExpirationChange">
-						{{ t('files_sharing', 'Enter a date') }}
-					</ActionInput>
+						:class="{ error: errors.expireDate }"
+						:disabled="saving"
+						:id="`expire-date-element-${share.id}`">
+						{{ expireDate }}
+					</ActionButton>
 
 					<!-- note -->
 					<ActionCheckbox :checked.sync="hasNote"
@@ -292,6 +288,18 @@
 
 		<!-- loading indicator to replace the menu -->
 		<div v-else class="icon-loading-small sharing-entry__loading" />
+
+		<DatePicker
+			v-if="share.expireDate"
+			append-to="body"
+			@close="onClosePicker"
+			format="YYYY-MM-DD"
+			:element="`expire-date-element-${share.id}`"
+			:value="faNumbersToEn(share.expireDate)"
+			@input="share.expireDate = faNumbersToEn($event)"
+			:display-format="dateFormat"
+			:show="showExpireDatePciker"
+			:disable="disabledDays" />
 	</li>
 </template>
 
@@ -299,6 +307,7 @@
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import Vue from 'vue'
+import jalaali from 'jalaali-js'
 
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
@@ -310,6 +319,7 @@ import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 import Actions from '@nextcloud/vue/dist/Components/Actions'
 import Avatar from '@nextcloud/vue/dist/Components/Avatar'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip'
+import DatePicker from 'vue-persian-datetime-picker'
 
 import Share from '../models/Share'
 import SharesMixin from '../mixins/SharesMixin'
@@ -329,6 +339,7 @@ export default {
 		ActionText,
 		ActionTextEditable,
 		Avatar,
+		DatePicker,
 	},
 
 	directives: {
@@ -354,10 +365,38 @@ export default {
 			publicUploadWValue: OC.PERMISSION_CREATE,
 
 			ExternalLinkActions: OCA.Sharing.ExternalLinkActions.state,
+
+			showExpireDatePciker: false,
+			locale: 'en',
 		}
 	},
 
 	computed: {
+		/**
+		 * Format share.expireDate depends on locale
+		 * @returns {string}
+		 */
+		expireDate() {
+			const expireDate = this.faNumbersToEn(this.share.expireDate)
+
+			if (this.locale === 'fa') {
+				const [gy, gm, gd] = expireDate.split(' ')[0].split('-').map(i => +i)
+				const { jy, jm, jd } = jalaali.toJalaali(gy, gm, gd)
+
+				if (jalaali.isValidJalaaliDate(jy, jm, jd)) {
+					return `${jy}-${jm}-${jd}`
+				}
+			}
+
+			return expireDate.split(' ')[0]
+		},
+		/**
+		 * Return format of date depends on current locale
+		 * @returns {string}
+		 */
+		dateFormat() {
+			return this.locale === 'fa' ? 'jYYYY-jMM-jDD' : 'YYYY-MM-DD'
+		},
 		/**
 		 * Return the current share permissions
 		 * We always ignore the SHARE permission as this is used for the
@@ -581,7 +620,26 @@ export default {
 		},
 	},
 
+	mounted() {
+		this.locale = window.OC.getLocale()
+	},
+
 	methods: {
+		onClosePicker() {
+			this.queueUpdate('expireDate')
+
+			setTimeout(() => {
+				this.open = true
+			}, 50)
+		},
+
+		disabledDays(formatted, dateMoment, checkingFor) {
+			return dateMoment.isBefore(new Date(), 'day')
+		},
+
+		faNumbersToEn(text) {
+			return String(text).replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+		},
 		/**
 		 * Create a new share link and append it to the list
 		 */
@@ -892,6 +950,18 @@ export default {
 
 	.icon-checkmark-color {
 		opacity: 1;
+	}
+}
+</style>
+<style lang="scss">
+.vpd-controls {
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	justify-content: space-between;
+
+	button {
+		display: flex;
 	}
 }
 </style>
