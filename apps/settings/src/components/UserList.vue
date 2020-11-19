@@ -92,7 +92,7 @@
 					:close-on-select="false"
 					:disabled="loading.groups||loading.all"
 					:multiple="true"
-					:options="canAddGroups"
+					:options="filterMultiSelectOptions(canAddGroups)"
 					:placeholder="t('settings', 'Add user in group')"
 					:tag-width="60"
 					:taggable="true"
@@ -112,7 +112,7 @@
 				<Multiselect v-model="newUser.subAdminsGroups"
 					:close-on-select="false"
 					:multiple="true"
-					:options="subAdminsGroups"
+					:options="filterMultiSelectOptions(subAdminsGroups)"
 					:placeholder="t('settings', 'Set user as admin for')"
 					:tag-width="60"
 					class="multiselect-vue"
@@ -171,6 +171,9 @@
 				<div class="subtitle">
 					{{ t('settings', 'Display name') }}
 				</div>
+			</div>
+			<div id="headerMainGroups" class="main-groups">
+				{{ t('settings', 'Main Groups') }}
 			</div>
 			<div id="headerPassword" class="password">
 				{{ t('settings', 'Password') }}
@@ -526,16 +529,11 @@ export default {
 				})
 		},
 		setNewUserDefaultGroup(value) {
-			if (value && value.length > 0) {
-				// setting new user default group to the current selected one
-				const currentGroup = this.groups.find(group => group.id === value)
-				if (currentGroup) {
-					this.newUser.groups = [currentGroup]
-					return
-				}
-			}
-			// fallback, empty selected group
-			this.newUser.groups = []
+			const currentGroups = this
+				.groups
+				.filter(group => (value && value.length > 0 && group.id === value) || group.id === 'local')
+
+			this.newUser.groups = currentGroups
 		},
 
 		/**
@@ -574,6 +572,10 @@ export default {
 		},
 		onClose() {
 			this.showConfig.showNewUserForm = false
+		},
+
+		filterMultiSelectOptions(options) {
+			return options.filter(option => !['local', 'registration', 'active'].includes(option.id))
 		},
 	},
 }

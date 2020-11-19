@@ -167,5 +167,9 @@ export default {
 				}
 			)
 		},
+
+		filterMultiSelectOptions(options) {
+			return options.filter(option => !['local', 'registration', 'active'].includes(option.id))
+		},
 	},
 }

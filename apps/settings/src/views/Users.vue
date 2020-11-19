@@ -59,7 +59,20 @@
 						{{ adminGroupMenu.count }}
 					</AppNavigationCounter>
 				</AppNavigationItem>
-
+				<template v-if="settings.isAdmin">
+					<AppNavigationItem
+						v-for="g in ['Local', 'Active', 'Registration']"
+						:id="g"
+						:key="g"
+						:exact="true"
+						:title="g"
+						:to="{ name: 'group', params: { selectedGroup: g.toLowerCase() } }"
+						icon="icon-user-admin">
+						<AppNavigationCounter v-if="mainGroupMenu(g.toLowerCase()).count" slot="counter">
+							{{ mainGroupMenu(g.toLowerCase()).count }}
+						</AppNavigationCounter>
+					</AppNavigationItem>
+				</template>
 				<!-- Hide the disabled if none, if we don't have the data (-1) show it -->
 				<AppNavigationItem
 					v-if="disabledGroupMenu.usercount > 0 || disabledGroupMenu.usercount === -1"
@@ -85,7 +98,7 @@
 					</AppNavigationCounter>
 					<template slot="actions">
 						<ActionButton
-							v-if="group.id !== 'admin' && group.id !== 'disabled' && settings.isAdmin"
+							v-if="!['admin', 'guest'].includes(group.id) && group.id !== 'disabled' && settings.isAdmin"
 							icon="icon-delete"
 							@click="removeGroup(group.id)">
 							{{ t('settings', 'Remove group') }}
@@ -314,8 +327,8 @@ export default {
 			const groups = Array.isArray(this.groups) ? this.groups : []
 
 			return groups
-				// filter out disabled and admin
-				.filter(group => group.id !== 'disabled' && group.id !== 'admin')
+				// filter out disabled and admin and main groups
+				.filter(group => !['disabled', 'admin', 'active', 'local', 'registration'].includes(group.id))
 				.map(group => this.formatGroupMenu(group))
 		},
 
@@ -507,6 +520,15 @@ export default {
 			}
 
 			return item
+		},
+
+		/**
+		 * Get main group info
+		 * @param {String} groupId ID of group
+		 * @returns {Object}
+		 */
+		mainGroupMenu(groupId) {
+			return this.formatGroupMenu(this.groups.find(group => group.id === groupId))
 		},
 	},
 }

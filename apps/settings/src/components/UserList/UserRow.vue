@@ -105,6 +105,7 @@
 				</div>
 			</div>
 		</div>
+		<div />
 		<form v-if="settings.canChangePassword && user.backendCapabilities.setPassword"
 			:class="{'icon-loading-small': loading.password}"
 			class="password"
@@ -144,7 +145,7 @@
 				:disabled="loading.groups||loading.all"
 				:limit="2"
 				:multiple="true"
-				:options="availableGroups"
+				:options="filterMultiSelectOptions(availableGroups)"
 				:placeholder="t('settings', 'Add user in group')"
 				:tag-width="60"
 				:taggable="settings.isAdmin"
@@ -166,7 +167,7 @@
 				:disabled="loading.subadmins||loading.all"
 				:limit="2"
 				:multiple="true"
-				:options="subAdminsGroups"
+				:options="filterMultiSelectOptions(subAdminsGroups)"
 				:placeholder="t('settings', 'Set user as admin for')"
 				:tag-width="60"
 				:value="userSubAdminsGroups"
