@@ -43,6 +43,8 @@
 	</div>
 
 	<!-- User full data -->
+	<!-- Ali-Changes-Start -->
+	<!-- selected, toggleSelected -->
 	<UserRowSimple
 		v-else-if="!editing"
 		:editing.sync="editing"
@@ -57,8 +59,11 @@
 		:user-actions="userActions"
 		:user="user"
 		:class="{'row--menu-opened': openedMenu}"
+		:selected="selected"
 		@hideMenu="hideMenu"
-		@toggleMenu="toggleMenu" />
+		@toggleMenu="toggleMenu"
+		@toggleSelect="toggleSelect" />
+	<!-- Ali-Changes-End -->
 	<div v-else
 		:class="{
 			'disabled': loading.delete || loading.disable,
@@ -66,6 +71,9 @@
 		}"
 		:data-id="user.id"
 		class="row row--editable">
+		<!-- Ali-Changes-Start -->
+		<div />
+		<!-- Ali-Changes-End -->
 		<div :class="{'icon-loading-small': loading.delete || loading.disable || loading.wipe}"
 			class="avatar">
 			<img v-if="!loading.delete && !loading.disable && !loading.wipe"
@@ -310,6 +318,12 @@ export default {
 			type: Array,
 			default: () => [],
 		},
+		// Ali-Changes-Start
+		selected: {
+			type: Boolean,
+			required: true,
+		},
+		// Ali-Changes-End
 	},
 	data() {
 		return {
@@ -688,6 +702,15 @@ export default {
 				})
 		},
 
+		// Ali-Changes-Start
+		/**
+		 * SELECT HANDLING
+		 * @param {Object} user Selected user info
+		 */
+		toggleSelect(user) {
+			this.$emit('toggleSelect', user)
+		},
+		// Ali-Changes-End
 	},
 }
 </script>

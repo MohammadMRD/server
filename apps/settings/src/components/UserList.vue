@@ -29,6 +29,9 @@
 			class="row"
 			@submit.prevent="createUser">
 			<div :class="loading.all?'icon-loading-small':'icon-add'" />
+			<!-- Ali-Changes-Start -->
+			<div />
+			<!-- Ali-Changes-End -->
 			<div class="name">
 				<input id="newusername"
 					ref="newusername"
@@ -167,9 +170,35 @@
 				</div>
 			</div>
 		</form>
-		<div id="grid-header"
+		<!-- Ali-Changes-Start -->
+		<div v-if="selectedUsers.length > 0" class="update-main-groups">
+			<Multiselect v-model="selectedGroups"
+				:close-on-select="false"
+				:multiple="true"
+				:options="filterMultiSelectOptions(canAddGroups)"
+				:placeholder="t('settings', 'Add user\'s main groups')"
+				:tag-width="80"
+				:disabled="loading.groups || loading.all"
+				class="multiselect-vue"
+				label="name"
+				track-by="id">
+				<span slot="noResult">{{ t('settings', 'No results') }}</span>
+			</Multiselect>
+			<button class="btn primary" @click="addUsersGroups">
+				{{ t('settings', 'Add') }}
+			</button>
+			<button class="btn error" style="margin:0;" @click="deleteUsersGroups">
+				{{ t('settings', 'Delete') }}
+			</button>
+		</div>
+		<!-- Ali-Changes-End -->
+		<div v-else
+			id="grid-header"
 			:class="{'sticky': scrolled && !showConfig.showNewUserForm}"
 			class="row">
+			<!-- Ali-Changes-Start -->
+			<div />
+			<!-- Ali-Changes-End -->
 			<div id="headerAvatar" class="avatar" />
 			<div id="headerName" class="name">
 				{{ t('settings', 'Username') }}
@@ -224,6 +253,8 @@
 			<div class="userActions" />
 		</div>
 
+		<!-- Ali-Changes-Start -->
+		<!-- Selected, toggleSelected -->
 		<user-row v-for="(user, key) in filteredUsers"
 			:key="key"
 			:external-actions="externalActions"
@@ -233,7 +264,11 @@
 			:settings="settings"
 			:show-config="showConfig"
 			:sub-admins-groups="subAdminsGroups"
-			:user="user" />
+			:user="user"
+			:selected="!!selectedUsers.find(u => u.id === user.id)"
+			@toggleSelect="toggleSelectedUsers" />
+		<!-- Ali-Changes-End -->
+
 		<InfiniteLoading ref="infiniteLoading" @infinite="infiniteHandler">
 			<div slot="spinner">
 				<div class="users-icon-loading icon-loading" />
@@ -320,6 +355,10 @@ export default {
 			scrolled: false,
 			searchQuery: '',
 			newUser: Object.assign({}, newUser),
+			// Ali-Changes-Start
+			selectedGroups: [],
+			selectedUsers: [],
+			// Ali-Changes-End
 		}
 	},
 	computed: {
@@ -590,6 +629,55 @@ export default {
 		// Ali-Changes-Start
 		filterMultiSelectOptions(options) {
 			return options.filter(option => !['local', 'registration', 'active'].includes(option.id))
+		},
+		/**
+		 * Select multiple users and change their main groups
+		 * @param {Object} user Selected user info
+		 */
+		toggleSelectedUsers(user) {
+			if (this.selectedUsers.find(u => u.id === user.id)) {
+				this.selectedUsers = this.selectedUsers.filter(u => u.id !== user.id)
+			} else {
+				this.selectedUsers.push(user)
+			}
+		},
+		addUsersGroups: function() {
+			this.loading.groups = true
+			this.selectedUsers.forEach((user) => {
+				this.selectedGroups.forEach(async(group) => {
+					if (!group.canAdd || user.groups.includes(group.id)) return
+
+					try {
+						await this.$store.dispatch('addUserGroup', { userid: user.id, gid: group.id })
+					} catch (error) {
+						// TODO: Log error
+					}
+				})
+			})
+
+			this.selectedGroups.splice(0)
+			this.selectedUsers.splice(0)
+
+			this.loading.groups = false
+		},
+		deleteUsersGroups() {
+			this.loading.groups = true
+			this.selectedUsers.forEach((user) => {
+				this.selectedGroups.forEach(async(group) => {
+					if (!user.groups.includes(group.id)) return
+
+					try {
+						await this.$store.dispatch('removeUserGroup', { userid: user.id, gid: group.id })
+					} catch (error) {
+						// TODO: Log error
+					}
+				})
+			})
+
+			this.selectedGroups.splice(0)
+			this.selectedUsers.splice(0)
+
+			this.loading.groups = false
 		},
 		// Ali-Changes-End
 	},

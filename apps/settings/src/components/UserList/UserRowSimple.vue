@@ -3,6 +3,18 @@
 		class="row"
 		:class="{'disabled': loading.delete || loading.disable}"
 		:data-id="user.id">
+		<!-- Ali-Changes-Start -->
+		<div class="selection" style="padding: auto 10px;">
+			<input :id="'select-user-'+user.id"
+				type="checkbox"
+				class="checkbox"
+				:checked="selected"
+				@change="toggleSelect(user)">
+			<label :for="'select-user-'+user.id">
+				<span class="hidden-visually">Select</span>
+			</label>
+		</div>
+		<!-- Ali-Changes-End -->
 		<div class="avatar" :class="{'icon-loading-small': loading.delete || loading.disable || loading.wipe}">
 			<img v-if="!loading.delete && !loading.disable && !loading.wipe"
 				alt=""
@@ -137,6 +149,12 @@ export default {
 			type: Object,
 			required: true,
 		},
+		// Ali-Changes-Start
+		selected: {
+			type: Boolean,
+			required: true,
+		},
+		// Ali-Changes-End
 	},
 	computed: {
 		userGroupsLabels() {
@@ -189,6 +207,11 @@ export default {
 		toggleEdit() {
 			this.$emit('update:editing', true)
 		},
+		// Ali-Changes-Start
+		toggleSelect(user) {
+			this.$emit('toggleSelect', user)
+		},
+		// Ali-Changes-End
 	},
 }
 </script>
