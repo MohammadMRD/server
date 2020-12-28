@@ -88,11 +88,13 @@
 					:value="newUser.groups"
 					tabindex="-1"
 					type="text">
+				<!-- Ali-Changes-Start -->
+				<!-- Only options -->
 				<Multiselect v-model="newUser.groups"
 					:close-on-select="false"
 					:disabled="loading.groups||loading.all"
 					:multiple="true"
-					:options="canAddGroups"
+					:options="filterMultiSelectOptions(canAddGroups)"
 					:placeholder="t('settings', 'Add user in group')"
 					:tag-width="60"
 					:taggable="true"
@@ -106,13 +108,16 @@
 						Therefore, empty select is forbidden -->
 					<span slot="noResult">{{ t('settings', 'No results') }}</span>
 				</Multiselect>
+				<!-- Ali-Changes-End -->
 			</div>
 			<div v-if="subAdminsGroups.length>0 && settings.isAdmin"
 				class="subadmins">
+				<!-- Ali-Changes-Start -->
+				<!-- Only Options -->
 				<Multiselect v-model="newUser.subAdminsGroups"
 					:close-on-select="false"
 					:multiple="true"
-					:options="subAdminsGroups"
+					:options="filterMultiSelectOptions(subAdminsGroups)"
 					:placeholder="t('settings', 'Set user as admin for')"
 					:tag-width="60"
 					class="multiselect-vue"
@@ -120,6 +125,7 @@
 					track-by="id">
 					<span slot="noResult">{{ t('settings', 'No results') }}</span>
 				</Multiselect>
+				<!-- Ali-Changes-End -->
 			</div>
 			<div class="quota">
 				<Multiselect v-model="newUser.quota"
@@ -172,6 +178,11 @@
 					{{ t('settings', 'Display name') }}
 				</div>
 			</div>
+			<!-- Ali-Changes-Start -->
+			<div id="headerMainGroups" class="main-groups">
+				{{ t('settings', 'Main Groups') }}
+			</div>
+			<!-- Ali-Changes-End -->
 			<div id="headerPassword" class="password">
 				{{ t('settings', 'Password') }}
 			</div>
@@ -260,6 +271,9 @@ const newUser = {
 	password: '',
 	mailAddress: '',
 	groups: [],
+	// Ali-Changes-Start
+	defaultGroups: [],
+	// Ali-Changes-End
 	subAdminsGroups: [],
 	quota: defaultQuota,
 	language: {
@@ -502,7 +516,9 @@ export default {
 				password: this.newUser.password,
 				displayName: this.newUser.displayName,
 				email: this.newUser.mailAddress,
-				groups: this.newUser.groups.map(group => group.id),
+				// Ali-Changes-Start
+				groups: [...this.newUser.groups, ...this.newUser.defaultGroups].map(group => group.id),
+				// Ali-Changes-End
 				subadmin: this.newUser.subAdminsGroups.map(group => group.id),
 				quota: this.newUser.quota.id,
 				language: this.newUser.language.code,
@@ -526,16 +542,12 @@ export default {
 				})
 		},
 		setNewUserDefaultGroup(value) {
-			if (value && value.length > 0) {
-				// setting new user default group to the current selected one
-				const currentGroup = this.groups.find(group => group.id === value)
-				if (currentGroup) {
-					this.newUser.groups = [currentGroup]
-					return
-				}
-			}
-			// fallback, empty selected group
-			this.newUser.groups = []
+			// Ali-Changes-Start
+			this.newUser.defaultGroups = this
+				.groups
+				.filter(group => (value && value.length > 0 && group.id === value) || group.id === 'local')
+
+			// Ali-Changes-End
 		},
 
 		/**
@@ -575,6 +587,11 @@ export default {
 		onClose() {
 			this.showConfig.showNewUserForm = false
 		},
+		// Ali-Changes-Start
+		filterMultiSelectOptions(options) {
+			return options.filter(option => !['local', 'registration', 'active'].includes(option.id))
+		},
+		// Ali-Changes-End
 	},
 }
 </script>

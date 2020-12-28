@@ -20,6 +20,11 @@
 				</div>
 			</div>
 		</div>
+		<!-- Ali-Changes-Start -->
+		<div class="main-groups">
+			{{ userMainGroupsLabels }}
+		</div>
+		<!-- Ali-Changes-End -->
 		<div />
 		<div class="mailAddress">
 			<div v-tooltip="user.email !== null && user.email.length > 20 ? user.email : ''" class="cellText">
@@ -137,11 +142,25 @@ export default {
 		userGroupsLabels() {
 			return this.userGroups
 				.map(group => group.name)
+				// Ali-Changes-Start
+				.filter(g => !['active', 'registration', 'local'].includes(g))
+				// Ali-Changes-End
 				.join(', ')
 		},
+		// Ali-Changes-Start
+		userMainGroupsLabels() {
+			return this.userGroups
+				.map(g => g.name)
+				.filter(g => ['active', 'registration', 'local'].includes(g))
+				.join(', ')
+		},
+		// Ali-Changes-End
 		userSubAdminsGroupsLabels() {
 			return this.userSubAdminsGroups
 				.map(group => group.name)
+				// Ali-Changes-Start
+				.filter(g => !['active', 'registration', 'local'].includes(g))
+				// Ali-Changes-End
 				.join(', ')
 		},
 		usedSpace() {
@@ -179,7 +198,7 @@ export default {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-}
+	}
 	.icon-more {
 		background-color: var(--color-main-background);
 		border: 0;

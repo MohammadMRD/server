@@ -167,5 +167,10 @@ export default {
 				}
 			)
 		},
+		// Ali-Changes-Start
+		filterMultiSelectOptions(options) {
+			return options.filter(option => !['local', 'registration', 'active'].includes(option.id))
+		},
+		// Ali-Changes-End
 	},
 }

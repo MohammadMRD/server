@@ -59,7 +59,22 @@
 						{{ adminGroupMenu.count }}
 					</AppNavigationCounter>
 				</AppNavigationItem>
-
+				<!-- Ali-Changes-Start -->
+				<template v-if="settings.isAdmin">
+					<AppNavigationItem
+						v-for="g in ['Local', 'Active', 'Registration']"
+						:id="g"
+						:key="g"
+						:exact="true"
+						:title="g"
+						:to="{ name: 'group', params: { selectedGroup: g.toLowerCase() } }"
+						icon="icon-user-admin">
+						<AppNavigationCounter v-if="mainGroupMenu(g.toLowerCase()).count" slot="counter">
+							{{ mainGroupMenu(g.toLowerCase()).count }}
+						</AppNavigationCounter>
+					</AppNavigationItem>
+				</template>
+				<!-- Ali-Changes-End -->
 				<!-- Hide the disabled if none, if we don't have the data (-1) show it -->
 				<AppNavigationItem
 					v-if="disabledGroupMenu.usercount > 0 || disabledGroupMenu.usercount === -1"
@@ -84,12 +99,15 @@
 						{{ group.count }}
 					</AppNavigationCounter>
 					<template slot="actions">
+						<!-- Ali-Changes-Start -->
+						<!-- Only v-if -->
 						<ActionButton
-							v-if="group.id !== 'admin' && group.id !== 'disabled' && settings.isAdmin"
+							v-if="!['admin', 'guest'].includes(group.id) && group.id !== 'disabled' && settings.isAdmin"
 							icon="icon-delete"
 							@click="removeGroup(group.id)">
 							{{ t('settings', 'Remove group') }}
 						</ActionButton>
+						<!-- Ali-Changes-End -->
 					</template>
 				</AppNavigationItem>
 			</ul>
@@ -314,8 +332,10 @@ export default {
 			const groups = Array.isArray(this.groups) ? this.groups : []
 
 			return groups
-				// filter out disabled and admin
-				.filter(group => group.id !== 'disabled' && group.id !== 'admin')
+				// Ali-Changes-Start
+				// filter out disabled and admin and main groups
+				.filter(group => !['disabled', 'admin', 'active', 'local', 'registration'].includes(group.id))
+				// Ali-Changes-End
 				.map(group => this.formatGroupMenu(group))
 		},
 
@@ -508,6 +528,16 @@ export default {
 
 			return item
 		},
+		// Ali-Changes-Start
+		/**
+		 * Get main group info
+		 * @param {String} groupId ID of group
+		 * @returns {Object}
+		 */
+		mainGroupMenu(groupId) {
+			return this.formatGroupMenu(this.groups.find(group => group.id === groupId))
+		},
+		// Ali-Changes-End
 	},
 }
 </script>

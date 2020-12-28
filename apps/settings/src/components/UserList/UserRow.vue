@@ -105,6 +105,9 @@
 				</div>
 			</div>
 		</div>
+		<!-- Ali-Changes-Start -->
+		<div />
+		<!-- Ali-Changes-End -->
 		<form v-if="settings.canChangePassword && user.backendCapabilities.setPassword"
 			:class="{'icon-loading-small': loading.password}"
 			class="password"
@@ -140,15 +143,17 @@
 			<input class="icon-confirm" type="submit" value="">
 		</form>
 		<div :class="{'icon-loading-small': loading.groups}" class="groups">
+			<!-- Ali-Changes-Start -->
+			<!-- Only options -->
 			<Multiselect :close-on-select="false"
 				:disabled="loading.groups||loading.all"
 				:limit="2"
 				:multiple="true"
-				:options="availableGroups"
+				:options="filterMultiSelectOptions(availableGroups)"
 				:placeholder="t('settings', 'Add user in group')"
 				:tag-width="60"
 				:taggable="settings.isAdmin"
-				:value="userGroups"
+				:value="filterMultiSelectOptions(userGroups)"
 				class="multiselect-vue"
 				label="name"
 				tag-placeholder="create"
@@ -158,18 +163,20 @@
 				@tag="createGroup">
 				<span slot="noResult">{{ t('settings', 'No results') }}</span>
 			</Multiselect>
+			<!-- Ali-Changes-End -->
 		</div>
 		<div v-if="subAdminsGroups.length>0 && settings.isAdmin"
 			:class="{'icon-loading-small': loading.subadmins}"
 			class="subadmins">
+			<!-- Ali-Changes-Start -->
 			<Multiselect :close-on-select="false"
 				:disabled="loading.subadmins||loading.all"
 				:limit="2"
 				:multiple="true"
-				:options="subAdminsGroups"
+				:options="filterMultiSelectOptions(subAdminsGroups)"
 				:placeholder="t('settings', 'Set user as admin for')"
 				:tag-width="60"
-				:value="userSubAdminsGroups"
+				:value="filterMultiSelectOptions(userSubAdminsGroups)"
 				class="multiselect-vue"
 				label="name"
 				track-by="id"
@@ -177,6 +184,7 @@
 				@select="addUserSubAdmin">
 				<span slot="noResult">{{ t('settings', 'No results') }}</span>
 			</Multiselect>
+			<!-- Ali-Changes-End -->
 		</div>
 		<div v-tooltip.auto="usedSpace"
 			:class="{'icon-loading-small': loading.quota}"

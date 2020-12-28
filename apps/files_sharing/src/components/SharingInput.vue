@@ -140,10 +140,14 @@ export default {
 		},
 
 		options() {
+			// Ali-Changes-Start
+			let options = this.recommendations
 			if (this.isValidQuery) {
-				return this.suggestions
+				options = this.suggestions
 			}
-			return this.recommendations
+
+			return options.filter(op => !op.isNoUser || (op.isNoUser && !['local', 'registration', 'active'].includes(op.displayName)))
+			// Ali-Changes-End
 		},
 
 		noResultText() {

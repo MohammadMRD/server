@@ -1434,6 +1434,9 @@ doesnotexist:-o-prefocus, .strengthify-wrapper {
 			grid-template-columns:
 					44px
 					minmax($grid-col-min-width + 30px, 1fr) // username, displayname
+					// Ali-Changes-Start
+					minmax($grid-col-min-width, 1fr) // main groups
+					// Ali-Changes-End
 					minmax($grid-col-min-width, 1fr) // password
 					minmax($grid-col-min-width, 1fr) // email
 					minmax(1.5*$grid-col-min-width, 1fr) // groups
@@ -1447,6 +1450,9 @@ doesnotexist:-o-prefocus, .strengthify-wrapper {
 
 			/* grid col width */
 			.name,
+			// Ali-Changes-Start
+			.main-groups,
+			// Ali-Changes-End
 			.password,
 			.mailAddress,
 			.languages,
@@ -1541,6 +1547,9 @@ doesnotexist:-o-prefocus, .strengthify-wrapper {
 				border-bottom-width: thin;
 
 				#headerDisplayName,
+				// Ali-Changes-Start
+				#headerMainGroups,
+				// Ali-Changes-End
 				#headerPassword,
 				#headerAddress,
 				#headerGroups,
