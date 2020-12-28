@@ -213,8 +213,11 @@
 							? t('files_sharing', 'Expiration date (enforced)')
 							: t('files_sharing', 'Set expiration date') }}
 					</ActionCheckbox>
-					<ActionInput v-if="hasExpirationDate"
+					<!-- Ali-Changes-Start -->
+					<ActionButton
+						v-if="hasExpirationDate"
 						ref="expireDate"
+						@click="showExpireDatePciker = true"
 						v-tooltip.auto="{
 							content: errors.expireDate,
 							show: errors.expireDate,
@@ -222,18 +225,13 @@
 							defaultContainer: '#app-sidebar'
 						}"
 						class="share-link-expire-date"
-						:class="{ error: errors.expireDate}"
-						:disabled="saving"
-						:first-day-of-week="firstDay"
-						:lang="lang"
-						:value="share.expireDate"
-						value-type="format"
 						icon="icon-calendar-dark"
-						type="date"
-						:disabled-date="disabledDate"
-						@update:value="onExpirationChange">
-						{{ t('files_sharing', 'Enter a date') }}
-					</ActionInput>
+						:class="{ error: errors.expireDate }"
+						:disabled="saving"
+						:id="`expire-date-element-${share.id}`">
+						{{ expireDate }}
+					</ActionButton>
+					<!-- Ali-Changes-End -->
 
 					<!-- note -->
 					<ActionCheckbox :checked.sync="hasNote"
@@ -292,6 +290,21 @@
 
 		<!-- loading indicator to replace the menu -->
 		<div v-else class="icon-loading-small sharing-entry__loading" />
+
+		<!-- Ali-Changes-Start -->
+		<DatePicker
+			v-if="share && share.expireDate"
+			append-to="body"
+			@close="onClosePicker"
+			format="YYYY-MM-DD"
+			:element="`expire-date-element-${share.id}`"
+			:value="faNumbersToEn(share.expireDate)"
+			@input="share.expireDate = faNumbersToEn($event)"
+			:display-format="dateFormat"
+			:show="showExpireDatePciker"
+			:disable="disabledDays"
+			:locale="['fa', 'fa_ir'].includes(locale) ? 'fa': 'en'" />
+		<!-- Ali-Changes-Start -->
 	</li>
 </template>
 
@@ -299,6 +312,9 @@
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import Vue from 'vue'
+// Ali-Changes-Start
+import jalaali from 'jalaali-js'
+// Ali-Changes-End
 
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
@@ -310,6 +326,9 @@ import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 import Actions from '@nextcloud/vue/dist/Components/Actions'
 import Avatar from '@nextcloud/vue/dist/Components/Avatar'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip'
+// Ali-Changes-Start
+import DatePicker from 'vue-persian-datetime-picker'
+// Ali-Changes-End
 
 import Share from '../models/Share'
 import SharesMixin from '../mixins/SharesMixin'
@@ -329,6 +348,9 @@ export default {
 		ActionText,
 		ActionTextEditable,
 		Avatar,
+		// Ali-Changes-Start
+		DatePicker,
+		// Ali-Changes-End
 	},
 
 	directives: {
@@ -354,10 +376,33 @@ export default {
 			publicUploadWValue: OC.PERMISSION_CREATE,
 
 			ExternalLinkActions: OCA.Sharing.ExternalLinkActions.state,
+			// Ali-Changes-Start
+			showExpireDatePciker: false,
+			// Ali-Changes-End
 		}
 	},
 
 	computed: {
+		// Ali-Changes-Start
+		/**
+		 * Format share.expireDate depends on locale
+		 * @returns {string}
+		 */
+		expireDate() {
+			const expireDate = this.faNumbersToEn(this.share.expireDate)
+
+			if (['fa', 'fa_ir'].includes(this.locale)) {
+				const [gy, gm, gd] = expireDate.split(' ')[0].split('-').map(i => +i)
+				const { jy, jm, jd } = jalaali.toJalaali(gy, gm, gd)
+
+				if (jalaali.isValidJalaaliDate(jy, jm, jd)) {
+					return `${jy}-${jm}-${jd}`
+				}
+			}
+
+			return expireDate.split(' ')[0]
+		},
+		// Ali-Changes-End
 		/**
 		 * Return the current share permissions
 		 * We always ignore the SHARE permission as this is used for the
@@ -582,6 +627,16 @@ export default {
 	},
 
 	methods: {
+		// Ali-Changes-Start
+		onClosePicker() {
+			this.queueUpdate('expireDate')
+
+			setTimeout(() => {
+				this.open = true
+			}, 50)
+		},
+		// Ali-Changes-End
+
 		/**
 		 * Create a new share link and append it to the list
 		 */
@@ -894,4 +949,18 @@ export default {
 		opacity: 1;
 	}
 }
+</style>
+<style lang="scss">
+// Ali-Changes-Start
+.vpd-controls {
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	justify-content: space-between;
+
+	button {
+		display: flex;
+	}
+}
+// Ali-Changes-End
 </style>

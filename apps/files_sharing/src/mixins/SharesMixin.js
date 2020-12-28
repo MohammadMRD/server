@@ -48,6 +48,10 @@ export default {
 		return {
 			config: new Config(),
 
+			// Ali-Changes-Start
+			locale: 'en',
+			// Ali-Changes-End
+
 			// errors helpers
 			errors: {},
 
@@ -132,9 +136,36 @@ export default {
 			return this.share && this.share.owner === getCurrentUser().uid
 		},
 
+		// Ali-Changes-Start
+		/**
+		 * Return format of date depends on current locale
+		 * @returns {string}
+		 */
+		dateFormat() {
+			return ['fa', 'fa_ir'].includes(this.locale) ? 'jYYYY-jMM-jDD' : 'YYYY-MM-DD'
+		},
+		// Ali-Changes-End
 	},
 
+	// Ali-Changes-Start
+	mounted() {
+		this.locale = String(OC.getLocale()).toLowerCase()
+	},
+	// Ali-Changes-End
+
 	methods: {
+		// Ali-Changes-Start
+		// Return state of day for persian-datepicker
+		disabledDays(formatted, dateMoment, checkingFor) {
+			return dateMoment.isSameOrBefore(new Date(), 'day')
+		},
+
+		// Convert persian numbers to en numbers
+		faNumbersToEn(text) {
+			return String(text).replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+		},
+		// Ali-Changes-End
+
 		/**
 		 * Check if a share is valid before
 		 * firing the request

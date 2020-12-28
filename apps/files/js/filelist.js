@@ -1698,8 +1698,14 @@
 
 			var formatted;
 			var text;
+			// Ali-Changes-Start
+			function getJalaaliDate() {
+				var { jy, jm, jd } = window.OCA.jalaaliJs.toJalaali(new Date(mtime));
+				return `${jy}/${jm}/${jd}`;
+			}
 			if (mtime > 0) {
-				formatted = OC.Util.formatDate(mtime);
+				formatted = ['fa', 'fa-ir'].includes(String(OC.getLocale()).toLowerCase()) ? getJalaaliDate() : OC.Util.formatDate(mtime);
+			// Ali-Changes-End
 				text = OC.Util.relativeModifiedDate(mtime);
 			} else {
 				formatted = t('files', 'Unable to determine date');

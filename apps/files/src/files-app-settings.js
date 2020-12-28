@@ -26,6 +26,12 @@ import Settings from './services/Settings'
 import SettingsView from './views/Settings'
 import Setting from './models/Setting'
 
+// AN-Changed-Start
+import jalaaliJs from 'jalaali-js'
+
+window.OCA.jalaaliJs = jalaaliJs
+// AN-Changed-End
+
 Vue.prototype.t = t
 
 // Init Files App Settings Service

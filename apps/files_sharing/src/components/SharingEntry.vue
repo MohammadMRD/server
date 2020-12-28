@@ -81,25 +81,24 @@
 						? t('files_sharing', 'Expiration date enforced')
 						: t('files_sharing', 'Set expiration date') }}
 				</ActionCheckbox>
-				<ActionInput v-if="hasExpirationDate"
+				<!-- Ali-Changes-Start -->
+				<ActionButton
+					v-if="hasExpirationDate"
 					ref="expireDate"
+					@click="showExpireDatePciker = true"
 					v-tooltip.auto="{
 						content: errors.expireDate,
 						show: errors.expireDate,
 						trigger: 'manual'
 					}"
-					:class="{ error: errors.expireDate}"
+					class="share-link-expire-date"
+					:class="{ error: errors.expireDate }"
 					:disabled="saving"
-					:first-day-of-week="firstDay"
-					:lang="lang"
-					:value="share.expireDate"
-					value-type="format"
 					icon="icon-calendar-dark"
-					type="date"
-					:disabled-date="disabledDate"
-					@update:value="onExpirationChange">
-					{{ t('files_sharing', 'Enter a date') }}
-				</ActionInput>
+					:id="`expire-date-element-${share.id}`">
+					{{ expireDate }}
+				</ActionButton>
+				<!-- Ali-Changes-End -->
 
 				<!-- note -->
 				<template v-if="canHaveNote">
@@ -132,17 +131,37 @@
 				{{ t('files_sharing', 'Unshare') }}
 			</ActionButton>
 		</Actions>
+		<!-- Ali-Changes-Start -->
+		<DatePicker
+			v-if="share && share.expireDate"
+			append-to="body"
+			@close="onClosePicker"
+			format="YYYY-MM-DD"
+			:element="`expire-date-element-${share.id}`"
+			:value="faNumbersToEn(share.expireDate)"
+			@input="share.expireDate = faNumbersToEn($event)"
+			:display-format="dateFormat"
+			:show="showExpireDatePciker"
+			:disable="disabledDays"
+			:locale="['fa', 'fa_ir'].includes(locale) ? 'fa': 'en'" />
+		<!-- Ali-Changes-End -->
 	</li>
 </template>
 
 <script>
+// Ali-Changes-Start
+import jalaali from 'jalaali-js'
+// Ali-Changes-End
+
 import Avatar from '@nextcloud/vue/dist/Components/Avatar'
 import Actions from '@nextcloud/vue/dist/Components/Actions'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
-import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import ActionTextEditable from '@nextcloud/vue/dist/Components/ActionTextEditable'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip'
+// Ali-Changes-Start
+import DatePicker from 'vue-persian-datetime-picker'
+// Ali-Changes-End
 
 import SharesMixin from '../mixins/SharesMixin'
 
@@ -153,9 +172,11 @@ export default {
 		Actions,
 		ActionButton,
 		ActionCheckbox,
-		ActionInput,
 		ActionTextEditable,
 		Avatar,
+		// Ali-Changes-Start
+		DatePicker,
+		// Ali-Changes-End
 	},
 
 	directives: {
@@ -171,10 +192,35 @@ export default {
 			permissionsDelete: OC.PERMISSION_DELETE,
 			permissionsRead: OC.PERMISSION_READ,
 			permissionsShare: OC.PERMISSION_SHARE,
+
+			// Ali-Changes-Start
+			showExpireDatePciker: false,
+			// Ali-Changes-End
 		}
 	},
 
 	computed: {
+		// Ali-Changes-Start
+		/**
+		 * Format share.expireDate depends on locale
+		 * @returns {string}
+		 */
+		expireDate() {
+			const expireDate = this.faNumbersToEn(this.share.expireDate)
+
+			if (['fa', 'fa_ir'].includes(this.locale)) {
+				const [gy, gm, gd] = expireDate.split(' ')[0].split('-').map(i => +i)
+				const { jy, jm, jd } = jalaali.toJalaali(gy, gm, gd)
+
+				if (jalaali.isValidJalaaliDate(jy, jm, jd)) {
+					return `${jy}-${jm}-${jd}`
+				}
+			}
+
+			return expireDate.split(' ')[0]
+		},
+		// Ali-Changes-End
+
 		title() {
 			let title = this.share.shareWithDisplayName
 			if (this.share.type === this.SHARE_TYPES.SHARE_TYPE_GROUP) {
@@ -345,6 +391,16 @@ export default {
 	},
 
 	methods: {
+		// Ali-Changes-Start
+		onClosePicker() {
+			this.queueUpdate('expireDate')
+
+			setTimeout(() => {
+				this.open = true
+			}, 50)
+		},
+		// Ali-Changes-End
+
 		updatePermissions({ isEditChecked = this.canEdit, isCreateChecked = this.canCreate, isDeleteChecked = this.canDelete, isReshareChecked = this.canReshare } = {}) {
 			// calc permissions if checked
 			const permissions = this.permissionsRead
