@@ -10,3 +10,9 @@
 #body-login .error-broken-link ul li{
 	list-style: disc;list-style-position:inside;cursor:default;	
 }
+
+/* Ali-Changes-Start */
+html[lang="fa"] #body-login .error-broken-link{
+	text-align: right;
+}
+/* Ali-Changes-End */

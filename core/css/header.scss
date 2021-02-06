@@ -693,3 +693,139 @@ header .emptycontent {
 		width: 48px;
 	}
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	#skip-to-content a {
+		right: -10000px;
+		left: auto;
+
+		&:focus {
+			right: 76px;
+			left: auto;
+		}
+	}
+
+	#nextcloud {
+		padding-right: 86px;
+		padding-left: unset;
+	}
+
+	#header {
+		.header-left > nav > .menu,
+		.header-right > div > .menu {
+			left: 5px;
+			right: auto;
+
+			&:after {
+				left: 10px;
+				right: auto;
+			}
+
+			#apps > ul,
+			&.settings-menu > ul {
+				li {
+					a {
+						&:hover,
+						&:focus,
+						&:active,
+						&.active {
+							box-shadow: inset -4px 0 var(--color-primary-element);
+						}
+
+						.icon-loading-small {
+							margin-left: 10px;
+							margin-right: 0;
+						}
+
+						svg {
+							margin-left: 10px;
+							margin-right: 0;
+						}
+
+						img {
+							margin-right: 0;
+							margin-left: 10px;
+						}
+					}
+				}
+			}
+		}
+
+		.logo {
+			right: 12px;
+			left: auto;
+		}
+
+		.header-appname-container {
+			padding-left: 10px;
+		}
+	}
+
+	.header-appname {
+		padding-left: 5px;
+	}
+
+	nav[role='navigation'] {
+		margin-right: -$header-height;
+	}
+
+	#header .header-left > nav > #navigation {
+		right: 25px;
+		transform: translateX(50%);
+	}
+
+	#header .header-left > nav > #navigation,
+	.ui-datepicker,
+	.ui-timepicker.ui-widget {
+		&:after {
+			right: 50%;
+			left: auto;
+			margin: 0;
+			margin-right: -10px;
+		}
+	}
+
+	#settings {
+		#expand {
+			padding-left: 12px;
+		}
+
+		#expanddiv:after {
+			left: 22px;
+			right: auto;
+		}
+	}
+
+	#appmenu {
+		li a::before {
+			transform: translateX(50%);
+			right: 50%;
+			left: auto;
+		}
+	}
+
+	.skip-navigation {
+		right: 3px;
+		left: auto;
+
+		&.skip-content {
+			right: $navigation-width;
+			left: auto;
+			margin-right: 3px;
+		}
+	}
+
+	.searchbox {
+		input[type='search'] {
+			padding-right: 25px;
+			padding-left: 20px;
+
+			& ~ .icon-close-white {
+				left: 0;
+				right: auto;
+			}
+		}
+	}
+}
+// Ali-Changes-End

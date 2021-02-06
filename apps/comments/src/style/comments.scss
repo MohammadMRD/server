@@ -259,3 +259,61 @@
 	left: -6px;
 	top: 24px;
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	#commentsTabView .newCommentForm {
+		margin-right: 36px;
+		margin-left: 0;
+	}
+
+	#commentsTabView .newCommentForm .message {
+		padding: 10px;
+		padding-left: 30px;
+	}
+	#commentsTabView .newCommentForm {
+		.submit,
+		.submitLoading {
+			left: 0;
+			right: auto;
+			transform: scaleX(-1);
+		}
+	}
+
+	#commentsTabView .comment .avatar,
+	.atwho-view-ul * .avatar{
+		margin-left: 5px;
+		margin-right: 0px;
+	}
+
+	#commentsTabView .comments li .message .atwho-inserted,
+	#commentsTabView .newCommentForm .atwho-inserted {
+		.avatar-name-wrapper {
+			padding: 1px 1px 1px 7px;
+
+			.avatar {
+				margin-right: 0;
+				margin-left: 2px;
+			}
+		}
+	}
+
+	#commentsTabView .comment .date {
+		margin-right: auto;
+	}
+
+	#commentsTabView .comments > li:not(.newCommentRow) .message {
+		padding-right: 40px;
+		padding-left: 0;
+	}
+
+	#commentsTabView .newCommentRow .action-container {
+		margin-right: auto;
+	}
+
+	#commentsTabView .comment .message .contactsmenu-popover {
+		right: -6px;
+		left: auto;
+	}
+}
+// Ali-Changes-End

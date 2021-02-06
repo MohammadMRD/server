@@ -30,10 +30,12 @@
 		<div v-tooltip.auto="tooltip" class="sharing-entry__desc">
 			<h5>{{ title }}</h5>
 		</div>
+		<!-- Ali-Changes-Start (:menu-align) -->
 		<Actions
-			menu-align="right"
+			:menu-align="lang === 'fa' ? 'left' : 'right'"
 			class="sharing-entry__actions"
 			@close="onMenuClose">
+			<!-- Ali-Changes-end (:menu-align) -->
 			<template v-if="share.canEdit">
 				<!-- edit permission -->
 				<ActionCheckbox
@@ -193,8 +195,9 @@ export default {
 			permissionsRead: OC.PERMISSION_READ,
 			permissionsShare: OC.PERMISSION_SHARE,
 
-			// Ali-Changes-Start
+			// Ali-Changes-Start-1
 			showExpireDatePciker: false,
+			lang: OC.getLanguage(),
 			// Ali-Changes-End
 		}
 	},
@@ -442,4 +445,15 @@ export default {
 		margin-left: auto;
 	}
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	.sharing-entry {
+		&__actions {
+			margin-right: auto;
+			margin-left: 0;
+		}
+	}
+}
+// Ali-Changes-End
 </style>

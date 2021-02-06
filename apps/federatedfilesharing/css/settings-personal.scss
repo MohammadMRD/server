@@ -37,3 +37,17 @@
 .social-facebook {
 	@include icon-color('social-facebook', 'federatedfilesharing', $color-black);
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	#fileSharingSettings .icon {
+		margin-right: 5px;
+		margin-left: 0;
+	}
+
+	.avatardiv {
+		margin-right: 0;
+		margin-left: 6px;
+	}
+}
+// Ali-Changes-End

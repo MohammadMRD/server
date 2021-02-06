@@ -75,3 +75,18 @@
 	color: var(--color-main-text);
 	font-weight: normal;
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	.atwho-view {
+		left: auto;
+		right: 0;
+	}
+
+	.atwho-view .atwho-header .small {
+		float: left;
+		margin-left: -5px;
+		margin-right: 0;
+	}
+}
+// Ali-Changes-End

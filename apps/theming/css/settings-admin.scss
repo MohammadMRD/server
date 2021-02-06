@@ -134,3 +134,35 @@
         transition: 500ms filter linear;
     }
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+    #theming {
+        input:active {
+            padding-left: 30px;
+            padding-right: 5px;
+        }
+
+        .theme-undo {
+            left: 4px; // input left margin + border
+            right: auto;
+        }
+
+        .theme-remove-bg {
+            float: left;
+            left: 0px;
+            right: auto;
+        }
+
+        #theming_settings_loading {
+            margin-left: 10px;
+            margin-right: 0;
+        }
+
+        #theming-preview {
+            margin-right: 178px;
+            margin-left: 0;
+        }
+    }
+}
+// Ali-Changes-End

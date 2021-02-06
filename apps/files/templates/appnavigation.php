@@ -68,6 +68,7 @@ script(\OCA\Files\AppInfo\Application::APP_ID, 'dist/files-app-settings');
 function NavigationListElements($item, $l, $pinned) {
 	strpos($item['classes'] ?? '', 'pinned') !== false ? $pinned++ : ''; ?>
 	<li
+		title="<?php p($item['name']); ?>"
 		data-id="<?php p($item['id']) ?>"
 		<?php if (isset($item['dir'])) { ?> data-dir="<?php p($item['dir']); ?>" <?php } ?>
 		<?php if (isset($item['view'])) { ?> data-view="<?php p($item['view']); ?>" <?php } ?>

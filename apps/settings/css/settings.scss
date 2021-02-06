@@ -1748,3 +1748,386 @@ doesnotexist:-o-prefocus, .strengthify-wrapper {
 		}
 	}
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	input#website:not(:placeholder-shown),
+	input#email:not(:placeholder-shown),
+	input#address:not(:placeholder-shown),
+	input#twitter:not(:placeholder-shown),
+	input#mail_from_address:not(:placeholder-shown),
+	input#mail_domain:not(:placeholder-shown),
+	input#mail_smtpname:not(:placeholder-shown),
+	input#mail_smtppassword:not(:placeholder-shown) {
+		direction: ltr;
+	}
+
+	.avatardiv.icon-loading {
+		right: auto;
+	}
+
+	.action-item .action-item__menu button {
+		padding-right: 0;
+		padding-left: 14px;
+	}
+
+	#cropper {
+		float: right;
+		right: 0;
+		left: auto;
+
+		.inner-container {
+			.primary {
+				float: left;
+			}
+		}
+	}
+
+	#personal-settings {
+		.personal-info {
+			margin-left: 10%;
+			margin-right: 0;
+		}
+
+		.personal-info[class^='icon-'], .personal-info[class*=' icon-'] {
+			padding-right: 30px;
+			padding-left: 0;
+		}
+	}
+
+	.personal-settings-container {
+		> div {
+			> form span {
+				&[class^='icon-checkmark'], &[class^='icon-error'] {
+					left: 8px;
+					right: auto;
+					float: left;
+				}
+			}
+		}
+
+		.verify {
+			right: 100%;
+			left: auto;
+		}
+	}
+
+	#body-settings #quota {
+		progress {
+			&::-moz-progress-bar {
+				border-radius: 0 3px 3px 0;
+			}
+
+			&::-webkit-progress-value {
+				border-radius: 0 3px 3px 0;
+			}
+		}
+	}
+
+	.verification-dialog {
+		left: -9px;
+		right: auto;
+	}
+
+	.federation-menu {
+		margin-right: 10px;
+		margin-left: 0;
+	}
+
+	.icon-federation-menu {
+		padding-right: 16px;
+		padding-left: 0;
+		background-position: right center;
+	}
+
+	table.nostyle {
+		label {
+			margin-left: 2em;
+			margin-right: 0;
+		}
+	}
+
+	#security-password {
+		#passwordform {
+			right: 0;
+			left: auto;
+		}
+	}
+
+	#two-factor-auth {
+		li > div {
+			margin-right: 20px;
+		}
+	}
+
+	.social-button {
+		padding-right: 0 !important;
+		margin-right: -10px;
+		margin-left: 0;
+	}
+
+	#usersearchform {
+		left: 0;
+		right: auto;
+	}
+
+	table.grid {
+
+		th {
+			padding: 0 .5em;
+			padding-right: .8em;
+		}
+
+		td {
+			padding: 0 .5em;
+			padding-right: .8em;
+			text-align: right;
+		}
+	}
+
+	td, th {
+		&.name {
+			padding: 0 .5em;
+			padding-right: .8em;
+		}
+
+		&.password {
+			padding: 0 .5em;
+			padding-right: .8em;
+		}
+
+		&.password > span {
+			margin-left: 1.2em;
+			margin-right: 0;
+		}
+	}
+
+	#app-content > svg.app-filter {
+		float: right;
+	}
+
+	#app-navigation {
+		/* Navigation icons */
+		left:auto;
+		right: 0;
+
+		img {
+			margin-left: 6px;
+			margin-right: 0;
+		}
+
+		li span.no-icon {
+			padding-right: 32px;
+			padding-right: 0;
+		}
+	}
+
+	.app-level {
+		.official {
+			background-position: right center;
+			padding-right: 25px;
+			padding-left: 0;
+		}
+
+		.supported {
+			background-position: right center;
+			padding-right: 25px;
+			padding-left: 0;
+		}
+	}
+
+	#app-sidebar #app-details-view {
+		h2 {
+			.icon-settings-dark,
+			svg {
+				margin-left: 10px;
+				margin-right: 0;
+			}
+		}
+
+		.app-level {
+			clear: left;
+
+			.app-score-image {
+				float: left;
+			}
+		}
+
+		.close {
+			left: 0;
+			right: auto;
+		}
+
+		.appslink {
+			margin-left: 5px;
+			margin-right: 0;
+		}
+	}
+
+	.apps-list {
+		#app-list-update-all {
+			margin-right: 10px;
+			margin-left: 0;
+		}
+
+		.counter {
+			padding-right: $header-height - 10px;
+			padding-left: 0;
+		}
+
+		&.installed {
+			.groups-enable {
+				label {
+					margin-left: 3px;
+					margin-right: 0;
+				}
+			}
+
+			.app-image {
+				text-align: left;
+			}
+
+			.actions {
+				text-align: left;
+
+				.icon-loading-small {
+					margin-left: 10px;
+					margin-right: 0;
+				}
+			}
+		}
+
+		.app-description {
+			ol {
+				ol, ul {
+					padding-right: 15px;
+					padding-left: 0;
+				}
+			}
+
+			> {
+				ul, ol {
+					margin-right: 19px;
+					margin-left: 0;
+				}
+			}
+
+			ul {
+				ol, ul {
+					padding-right: 15px;
+					padding-left: 0;
+				}
+			}
+		}
+
+		.apps-header {
+			h2 {
+				padding-right: 6px;
+				padding-left: 0;
+
+				.enable {
+					margin-right: 12px;
+					margin-left: 0;
+				}
+			}
+		}
+	}
+
+	#shareAPI {
+		.indent {
+			padding-right: 28px;
+			padding-left: 0;
+		}
+
+		.double-indent {
+			padding-right: 56px;
+			padding-left: 0;
+		}
+
+		.nocheckbox {
+			padding-right: 20px;
+			padding-left: 0;
+		}
+	}
+
+	#shareApiDefaultPermissionsSection label {
+		margin-left: 20px;
+		margin-right: 0;
+	}
+
+	#publicShareDisclaimerText {
+		margin-right: 20px;
+		margin-left: 0;
+	}
+
+	#encryptionAPI li {
+		margin-right: 20px;
+		margin-left: 0;
+	}
+
+	.mail_settings p {
+		label:first-child {
+			text-align: left;
+		}
+	}
+
+	.cronlog {
+		margin-right: 10px;
+		margin-left: 0;
+	}
+
+	doesnotexist:-o-prefocus, .strengthify-wrapper {
+		right: 185px;
+		left: auto;
+	}
+
+	#postsetupchecks {
+		ul {
+			margin-right: 44px;
+			margin-left: 0;
+		}
+
+		.loading {
+			background-position: right center;
+		}
+	}
+
+	#selectEncryptionModules {
+		margin-right: 30px;
+		margin-left: 0;
+	}
+
+	#body-settings {
+		#app-content.user-list-grid {
+			.row {
+				.userActions {
+					left: 0px;
+					right: auto;
+				}
+
+				&#grid-header {
+					#headerLanguages {
+						padding-right: 7px;
+						padding-left: 0;
+					}
+				}
+
+				> form {
+					&.quota {
+						justify-content: right;
+					}
+				}
+
+				&.userActions {
+					.feedback {
+						.icon-checkmark {
+							margin-left: 5px;
+							margin-right: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+// Ali-Changes-End

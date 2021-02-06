@@ -40,7 +40,9 @@ script('files', 'jquery.fileupload');
 				$class = 'nav-icon-' . $form['anchor'];
 				$sectionName = $form['section-name'];
 				$active = $form['active'] ? ' class="active"' : ''; ?>
-				<li <?php print_unescaped($form['active'] ? ' class="active"' : ''); ?>>
+				<!-- Ali-Changes-Start -->
+				<li title="<?php p($form['section-name']); ?>" <?php print_unescaped($form['active'] ? ' class="active"' : ''); ?>>
+					<!-- Ali-Changes-End -->
 					<a href="<?php p($anchor); ?>">
 						<?php if (!empty($form['icon'])) { ?>
 							<img alt="" src="<?php print_unescaped($form['icon']); ?>">
@@ -67,7 +69,9 @@ script('files', 'jquery.fileupload');
 				$class = 'nav-icon-' . $form['anchor'];
 				$sectionName = $form['section-name'];
 				$active = $form['active'] ? ' class="active"' : ''; ?>
-				<li <?php print_unescaped($form['active'] ? ' class="active"' : ''); ?>>
+				<!-- Ali-Changes-Start -->
+				<li title="<?php p($form['section-name']); ?>" <?php print_unescaped($form['active'] ? ' class="active"' : ''); ?>>
+					<!-- Ali-Changes-End -->
 					<a href="<?php p($anchor); ?>">
 						<?php if (!empty($form['icon'])) { ?>
 							<img alt="" src="<?php print_unescaped($form['icon']); ?>">

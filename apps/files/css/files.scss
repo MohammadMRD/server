@@ -1147,3 +1147,226 @@ table.dragshadow td.size {
 #gallery-button {
 	display: none;
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	.actions {
+		float: right;
+	}
+
+	.actions input, .actions button, .actions .button {
+		float:right;
+	}
+
+	.actions.creatable {
+		.button:not(:last-child) {
+			margin-right: 3px;
+			margin-left: 0;
+		}
+	}
+
+	#trash {
+		margin-left: 8px;
+		margin-right: 0;
+		float: left;
+	}
+
+	table th .columntitle.name {
+		padding-right: 0;
+		margin-right: 50px;
+		margin-left: 0px;
+	}
+
+	table th .sort-indicator {
+		margin-right: 5px;
+		margin-left: 0px;
+	}
+
+	table td {
+		text-align: right;
+	}
+
+	table th#headerSize, table td.filesize {
+		text-align: left;
+	}
+
+	#app-content.with-app-sidebar table.multiselect thead{
+		margin-right: 27%;
+		margin-left: 0;
+	}
+
+	table td.filename .thumbnail {
+		margin-right: 9px;
+		margin-left: 0;
+	}
+
+	table td.filename input.filename {
+		margin-right: 48px;
+		margin-left: 0;
+	}
+
+	table td.filename a, table td.login, table td.logout, table td.download, table td.upload, table td.create, table td.delete {
+		padding:3px 3px 8px 8px;
+	}
+
+	table td.filename .nametext, .modified, .column-last>span:first-child {
+		float:right;
+		padding:15px 0;
+	}
+
+	table {
+		td.filename {
+			max-width: 0;
+			.nametext {
+				padding: 0 0 0 20px;
+			}
+		}
+		.uploadtext {
+			right: 55px;
+			left: auto;
+		}
+	}
+
+	table td.filename .uploadtext {
+		margin-right: 55px;
+		margin-left: 0;
+	}
+
+	#fileList tr td.selection>.selectCheckBox + label:before {
+		margin-left: 0;
+	}
+
+	#fileList tr td.filename .favorite {
+		float: right;
+	}
+
+	#fileList tr td.filename .favorite-mark {
+		left: -6px;
+		right: auto;
+	}
+
+	#fileList td a {
+		a.action {
+			&.action-share {
+				&.permanent:not(.shared-style) .icon-shared + span {
+					right:-10000px;
+					left: auto;
+				}
+			}
+		}
+	}
+
+	#fileList .action.action-share.permanent.shared-style span:not(.icon) {
+		margin-right: 6px;
+		margin-left: 0;
+	}
+
+	#fileList .remoteAddress .userDomain {
+		margin-right: 0 !important;
+	}
+
+	.summary .info {
+		margin-right: 2px;
+		margin-left: 0;
+	}
+
+	table.dragshadow td.filename {
+		padding-right:60px;
+		padding-left:16px;
+	}
+
+	table.dragshadow td.size {
+		padding-left:8px;
+		padding-right: 0;
+	}
+
+	.newFileMenu {
+		margin-right: 22px; /* Align left edge below center of + button … */
+		margin-left: 0;
+		transform: translateX(50%); /* … then center it below button */
+
+		&::after {
+			right: calc(50% - 8px) !important;
+			left: auto !important;
+		}
+	}
+
+	.notCreatable {
+		padding-right: 12px;
+		padding-left: 0;
+	}
+
+	#filestable.view-grid:not(.hidden) {
+		tbody {
+			td {
+				&.filename {
+					.thumbnail-wrapper {
+						right: 0;
+						left: auto;
+
+						.thumbnail {
+							.favorite-mark {
+								right: auto;
+								left: -22px;
+							}
+						}
+					}
+
+					.name {
+						.fileactions {
+							left: 0;
+							right: auto;
+						}
+					}
+
+					form {
+						input.filename {
+							margin-right: 0;
+						}
+					}
+				}
+
+				&.selection,
+				&.filename .favorite-mark {
+					right: -8px;
+					left: auto;
+				}
+
+				.popovermenu {
+					right: 0;
+					left: auto;
+				}
+			}
+		}
+
+		tfoot {
+			.summary:not(.hidden) {
+				td {
+					.info {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+	}
+
+	#view-toggle {
+		left: 0 !important;
+		right: auto !important;
+	}
+
+	#body-public {
+		#filestable.view-grid:not(.hidden) tbody td {
+			.popovermenu {
+				right: -80px;
+				left: auto;
+			}
+		}
+
+		#view-toggle {
+			left: 0;
+			right: auto;
+		}
+	}
+}
+// Ali-Changes-End

@@ -1274,3 +1274,217 @@ fieldset {
 	height: 0;
 	opacity: 0;
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	direction: rtl;
+
+	caption, th, td {
+		text-align: right;
+	}
+
+	#nojavascript{
+		right: 0;
+		left: auto;
+	}
+
+	.viewer-mode #app-navigation + #app-content #controls {
+		right: 0;
+		left: auto;
+	}
+
+	#show, #dbpassword {
+		left: 1em;
+		right: auto;
+		float: left;
+	}
+
+	#show + label, #dbpassword + label {
+		left: 21px;
+		right: auto;
+	}
+
+	#pass2, input[name='personal-password-clone'] {
+		padding-left: 30px;
+	}
+
+	.personal-show-container {
+		margin-left: 6px;
+	}
+
+	#personal-show + label {
+		left: 0;
+		right: auto;
+		margin-left: -4px;
+	}
+
+	.error:not(.toastify) {
+		pre {
+			text-align: right;
+		}
+	}
+
+	.error-wide {
+		margin-right: -200px !important;
+		margin-left: 0px;
+	}
+
+	#remember_login {
+		margin: 18px 16px 0 5px !important;
+	}
+
+	#notification-container {
+		right: 50%;
+		left: auto;
+		transform: translateX(50%);
+	}
+
+	#notification {
+		span {
+			margin-right: 1em;
+		}
+
+		.row {
+			.close {
+				left: 0;
+				right:auto;
+			}
+
+			&.closeable {
+				padding-left: 20px;
+			}
+		}
+	}
+
+	.pager {
+		float: left;
+		margin: .7em 0 0 13em;
+	}
+
+	.ui-widget.ui-timepicker {
+		table.ui-timepicker tr .ui-timepicker-hour-cell:first-child {
+			margin-right: 30px;
+		}
+
+		.ui-timepicker-table {
+			td {
+				&.ui-timepicker-hours {
+					border: 0;
+					border-left: 1px solid var(--color-border);
+				}
+			}
+		}
+	}
+
+	#oc-dialog-filepicker-content {
+		.dirtree {
+			padding-right: 12px;
+			padding-left: 0px;
+
+			div:first-child a {
+				background-position: right center;
+			}
+		}
+
+		#picker-view-toggle {
+			left: 0;
+			right: auto;
+		}
+
+		.actions.creatable {
+			right: 15px;
+			left: auto;
+
+			.menu {
+				margin-right: 1px;
+			}
+		}
+
+		#picker-filestable.filelist {
+			th .columntitle.name {
+				padding-right: 5px;
+				margin-right: 50px;
+			}
+
+			th .sort-indicator {
+				margin-right: 5px;
+			}
+
+			.filename {
+				padding-right: 51px;
+				padding-left: 0;
+			}
+
+			.filesize {
+				text-align: left;
+			}
+		}
+	}
+
+	span.ui-icon {
+		float: right;
+		margin: 3px 0 30px 7px;
+	}
+
+	#header .header-right > div#contactsmenu > .menu {
+		.contact {
+			padding: 3px 10px 3px 3px;
+
+			.body {
+				padding-right: 8px;
+				padding-left: 0px;
+			}
+
+			.menu {
+				margin-left: 13px;
+				margin-right: 0px;
+			}
+			.popovermenu::after {
+				left: 2px;
+				right: auto;
+			}
+		}
+	}
+
+	.extra-data {
+		padding-left: 5px !important;
+	}
+
+	#tagsdialog {
+		.bottombuttons {
+			* {
+				float: right;
+			}
+		}
+	}
+
+	div.crumb {
+		padding-left: 7px;
+		transform: scaleX(-1);
+		flex-direction: row-reverse;
+
+		* {
+			transform: scaleX(-1);
+		}
+
+		&.crumbmenu {
+			.popovermenu {
+				margin-left: 3px;
+
+				ul {
+					padding-left: 5px;
+				}
+			}
+		}
+
+		&:last-child {
+			margin-left: 10px;
+			margin-right: 0;
+
+			a ~ span {
+				padding-right: 0;
+			}
+		}
+	}
+}
+// Ali-Changes-End

@@ -20,3 +20,12 @@
 	position: relative;
 	margin-top: -20px;
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	#app-content-systemtagsfilter .select2-container {
+		margin-right: 10px;
+		margin-left: 0;
+	}
+}
+// Ali-Changes-End

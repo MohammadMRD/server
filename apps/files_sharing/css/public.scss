@@ -225,3 +225,59 @@ thead {
 		}
 	}
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	#imgframe .text-preview {
+		text-align: right;
+	}
+
+	thead {
+		right: 0 !important;
+		left: auto !important;
+	}
+
+	#data-upload-form {
+		right: auto;
+		left: 0;
+		float: left;
+	}
+
+	#public-upload #emptycontent .icon-folder {
+		margin-left: 5px;
+	}
+
+	#public-upload #emptycontent .button {
+		padding: 10px 20px;
+		padding-right: 42px;
+	}
+
+	#public-upload #emptycontent ul {
+		text-align: right;
+	}
+
+
+	#public-upload #emptycontent li img {
+		margin-left: 5px;
+	}
+
+	#drop-upload-progress-indicator span.icon-loading-small {
+		padding-right: 18px;
+		padding-left: 0;
+		margin-left: 7px;
+		margin-right: 0;
+	}
+
+	#drop-uploaded-files li #drop-upload-name {
+		float: right;
+	}
+
+	#drop-uploaded-files li #drop-upload-status {
+		float: left;
+	}
+
+	.disclaimer, .note {
+		text-align: right;
+	}
+}
+// Ali-Changes-End

@@ -48,3 +48,27 @@
 .inlineblock {
 	display: inline-block;
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	.pull-left {
+		float: right;
+	}
+
+	.pull-right {
+		float: left;
+	}
+
+	.clear-left {
+		clear: right;
+	}
+
+	.clear-right {
+		clear: left;
+	}
+
+	.hidden-visually {
+		right:-10000px;
+	}
+}
+// Ali-Changes-End

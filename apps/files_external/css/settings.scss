@@ -148,3 +148,42 @@
 .nav-icon-external-storage {
 	@include icon-color('app-dark', 'files_external', $color-black);
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	#selectBackend {
+		margin-right: -10px;
+		margin-left: 0;
+	}
+
+	#externalStorage td.configuration input.added  {
+		margin-left: 6px;
+	}
+
+	#externalStorage label > input[type="checkbox"] {
+		margin-left: 3px;
+	}
+
+	#userMountingBackends {
+		padding-right: 25px;
+		padding-left: 0;
+	}
+
+	.files-external-select2 .select2-results .select2-result-label .avatardiv + span {
+		margin-right: 10px;
+		margin-left: 0;
+	}
+
+	.files-external-select2 .select2-results .select2-result-label .avatardiv[data-type="group"] + span {
+		right: 30px;
+		left: auto;
+	}
+
+	#externalStorage .select2-container .select2-search-choice {
+		.select2-search-choice-close {
+			right: auto;
+			left: unset;
+		}
+	}
+}
+// Ali-Changes-End

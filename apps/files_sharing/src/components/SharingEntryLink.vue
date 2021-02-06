@@ -42,12 +42,14 @@
 		</Actions>
 
 		<!-- pending actions -->
+		<!-- Ali-Changes-Start (:menu-align) -->
 		<Actions v-if="!loading && (pendingPassword || pendingExpirationDate)"
 			class="sharing-entry__actions"
-			menu-align="right"
+			:menu-align="lang === 'fa' ? 'left' : 'right'"
 			:open.sync="open"
 			@close="onNewLinkShare">
 			<!-- pending data menu -->
+			<!-- Ali-Changes-end (:menu-align) -->
 			<ActionText v-if="errors.pending"
 				icon="icon-error"
 				:class="{ error: errors.pending}">
@@ -117,11 +119,13 @@
 		</Actions>
 
 		<!-- actions -->
+		<!-- Ali-Changes-Start (:menu-align) -->
 		<Actions v-else-if="!loading"
 			class="sharing-entry__actions"
-			menu-align="right"
+			:menu-align="lang === 'fa' ? 'left' : 'right'"
 			:open.sync="open"
 			@close="onMenuClose">
+			<!-- Ali-Changes-End (:menu-align) -->
 			<template v-if="share">
 				<template v-if="share.canEdit">
 					<!-- folder -->
@@ -376,8 +380,9 @@ export default {
 			publicUploadWValue: OC.PERMISSION_CREATE,
 
 			ExternalLinkActions: OCA.Sharing.ExternalLinkActions.state,
-			// Ali-Changes-Start
+			// Ali-Changes-Start-1
 			showExpireDatePciker: false,
+			lang: OC.getLanguage(),
 			// Ali-Changes-End
 		}
 	},
@@ -949,6 +954,17 @@ export default {
 		opacity: 1;
 	}
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	.sharing-entry {
+		.action-item:not(.sharing-entry__copy) {
+			margin-right: auto;
+			margin-left: 0;
+		}
+	}
+}
+// Ali-Changes-End
 </style>
 <style lang="scss">
 // Ali-Changes-Start

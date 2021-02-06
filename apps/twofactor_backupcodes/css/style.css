@@ -19,3 +19,17 @@
 	border: none !important;
 	opacity: .5;
 }
+
+/* Ali-Changes-Start */
+html[lang="fa"] .challenge {
+	margin-right: 0 !important;
+	margin-left: auto !important;
+}
+
+.confirm-inline {
+	left: 0;
+	right: auto;
+	padding-left: 25px !important;
+	padding-right: auto !important;
+}
+/* Ali-Changes-End */

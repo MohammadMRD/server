@@ -114,4 +114,15 @@ export default {
 		margin-left: auto;
 	}
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	.sharing-entry {
+		&__actions {
+			margin-right: auto;
+			margin-left: 0;
+		}
+	}
+}
+// Ali-Changes-End
 </style>

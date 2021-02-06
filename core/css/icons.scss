@@ -497,3 +497,36 @@ audio, canvas, embed, iframe, img, input, object, video {
 .nav-icon-systemtagsfilter {
 	@include icon-color('tag', 'actions', $color-black, 1, true);
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	.loading,
+	.loading-small,
+	.icon-loading,
+	.icon-loading-dark,
+	.icon-loading-small,
+	.icon-loading-small-dark {
+		margin: -16px -16px 0 0;
+		// right: 50%;
+		// left: auto;
+	}
+
+	.icon-loading-small:after,
+	.icon-loading-small-dark:after {
+		margin-top: 0px;
+	}
+
+	.icon-view-next {
+		@include icon-color('arrow-left', 'actions', $color-black, 1, true);
+		&.icon-white {
+			@include icon-color('arrow-left', 'actions', $color-white, 1, true);
+		}
+	}
+	.icon-view-previous {
+		@include icon-color('arrow-right', 'actions', $color-black, 1, true);
+		&.icon-white {
+			@include icon-color('arrow-right', 'actions', $color-white, 1, true);
+		}
+	}
+}
+// Ali-Changes-End

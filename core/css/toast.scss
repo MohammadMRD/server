@@ -47,3 +47,39 @@
 .toast-success {
 	border-left: 3px solid var(--color-success);
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	.toastify.toast {
+		padding: 12px;
+		padding-left: 34px;
+
+		.toast-close {
+			left: 0;
+			right: auto;
+		}
+	}
+
+	.toastify.toastify-top {
+		left: 10px;
+		right: auto;
+	}
+
+	.toast-error {
+		border: 0;
+		border-right: 3px solid var(--color-error);
+	}
+	.toast-info {
+		border: 0;
+		border-right: 3px solid var(--color-primary);
+	}
+	.toast-warning {
+		border: 0;
+		border-right: 3px solid var(--color-warning);
+	}
+	.toast-success {
+		border: 0;
+		border-right: 3px solid var(--color-success);
+	}
+}
+// Ali-Changes-End

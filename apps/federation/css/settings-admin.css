@@ -30,3 +30,20 @@
 #ocFederationAddServer #serverUrl {
 	width: 300px;
 }
+
+/* Ali-Changes-Start */
+html[lang="fa"] .removeTrustedServer {
+	padding-left: 0px;
+	padding-right: 10px;
+}
+
+html[lang="fa"] #listOfTrustedServers .status {
+	margin-right: 0px;
+	margin-left: 10px;
+}
+
+html[lang="fa"] #listOfTrustedServers .icon {
+	margin-left: 0px;
+	margin-right: 10px;
+}
+/* Ali-Changes-End */

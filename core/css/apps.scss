@@ -1288,3 +1288,330 @@ $outter-margin: ($popoveritem-height - $popovericon-size) / 2;
 		display: flex;
 	}
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	dd {
+		padding-right: 0;
+	}
+
+	dt {
+		text-align: left;
+	}
+
+	#new-user-button {
+		padding-right: 34px;
+		text-align: right;
+	}
+
+	#app-navigation:not(.vue) {
+		left: auto;
+		right: 0;
+		border-left: 1px solid var(--color-border);
+
+		> ul {
+			> li {
+				padding-right: 0px;
+
+				> .app-navigation-entry-deleted {
+					padding-right: 44px !important;
+				}
+
+				> .app-navigation-entry-edit {
+					padding-right: 38px !important;
+				}
+
+				a {
+					background-position: right 14px center;
+					padding-right: 44px;
+					padding-left: 0;
+				}
+
+				&.icon-loading-small:after {
+					right: 22px;
+				}
+
+				> ul {
+					> li {
+						padding-right: 22px;
+
+						&.active {
+							box-shadow: inset -4px 0 var(--color-primary-element);
+						}
+
+						&.icon-loading-small:after {
+							right: 22px; /* 44px / 2 */
+						}
+
+						> .app-navigation-entry-deleted {
+							margin-right: 4px;
+							padding-right: 84px;
+						}
+
+						> .app-navigation-entry-edit {
+							margin-right: 4px;
+							padding-right: 78px !important;
+						}
+					}
+				}
+
+				> a {
+					&:first-child img {
+						margin-left: 11px;
+					}
+				}
+
+				&.active,
+				a:hover,
+				a:focus,
+				a:active,
+				a.selected ,
+				a.active {
+					&,
+					> a {
+						box-shadow: inset -4px 0 var(--color-primary-element);
+					}
+				}
+			}
+		}
+
+		> li,
+		> li > ul > li {
+			> a {
+				padding: 0 44px 0 12px;
+
+				&:first-child img {
+					margin-left: 11px;
+				}
+
+				> .app-navigation-entry-utils  {
+					float: left;
+
+					.app-navigation-entry-utils-counter {
+						padding-left: 0 !important;
+					}
+				}
+			}
+		}
+
+		.collapsible {
+			&::before {
+				transform: rotate(90deg);
+			}
+
+			.collapse {
+				right: 0;
+			}
+		}
+
+		.app-navigation-entry-utils {
+			.app-navigation-entry-utils-counter {
+				text-align: left;
+			}
+		}
+
+		.app-navigation-entry-edit {
+			input {
+				margin-left: 0;
+			}
+
+			input[type='text'] {
+				border-bottom-left-radius: 0;
+				border-top-left-radius: 0;
+			}
+
+			button,
+			input:not([type='text']) {
+				&:not(:first-child) {
+					margin-right: -1px;
+				}
+
+				&:last-child {
+					border-bottom-left-radius: var(--border-radius);
+					border-top-left-radius: var(--border-radius);
+					border-bottom-right-radius: 0;
+					border-top-right-radius: 0;
+				}
+			}
+		}
+
+		.app-navigation-entry-deleted {
+			padding-right: 44px;
+		}
+
+		.app-navigation-entry-edit,
+		.app-navigation-entry-deleted  {
+			right: 0;
+			left: auto;
+		}
+	}
+
+	#app-navigation:not(.hidden) + #app-content {
+		margin-left: 0 !important;
+		margin-right: $navigation-width;
+	}
+
+	#app-sidebar {
+		left:0;
+		border-right: 1px solid var(--color-border);
+	}
+
+	#app-settings-content {
+		.info-text {
+			padding: 5px 22px 7px 0;
+		}
+
+		#webdavurl {
+			direction: ltr !important;
+		}
+	}
+
+	#app-settings-header .settings-button {
+		text-align: right;
+		padding-right: 42px;
+		background-position: right 14px center;
+	}
+
+	.section {
+		input {
+			&[type='checkbox'],
+			&[type='radio'] {
+				margin-left: 4px;
+			}
+		}
+	}
+
+	.sub-section {
+		margin-right: 27px;
+	}
+
+	.tabHeaders {
+		.tabHeader {
+			&:first-child {
+				padding-right: 15px;
+			}
+
+			&:last-child {
+				padding-left: 15px;
+			}
+
+			.icon {
+				margin-left: 3px;
+			}
+		}
+	}
+
+	.tabsContainer {
+		clear: right;
+	}
+
+	.bubble,
+	.app-navigation-entry-menu,
+	.popovermenu {
+		left: 0;
+		right: auto;
+
+		&:after {
+			left: 7px;
+			right: auto;
+		}
+
+		&.menu-center {
+			transform: translateX(-50%);
+			left: 50%;
+			margin-left: 0;
+
+			&:after {
+				left: 50%;
+				transform: translateX(-50%);
+			}
+		}
+
+		&.menu-left {
+			left: auto;
+			right: 0;
+			margin-left: 0;
+
+			&:after {
+				right: 6px;
+				left: auto;
+			}
+		}
+
+		li {
+			> .menuitem {
+				&:not([class^='icon-']):not([class*='icon-']) {
+					> span,
+					> input,
+					> form {
+						&:not([class^='icon-']):not([class*='icon-']):first-child {
+							margin-right: $popoveritem-height;
+						}
+					}
+				}
+
+				> select {
+					margin-right: 6px;
+				}
+
+				&:not(:empty) {
+					padding-left: $outter-margin !important;
+					padding-right: 0 !important;
+				}
+
+				// form {
+				// 	&:not(:first-child)  {
+				// 		margin-right: 5px;
+				// 	}
+				// }
+
+				> span[style*='display:none'] + form {
+					margin-right: 0;
+				}
+
+				input {
+					&:not(:first-child) {
+						margin-right: 5px;
+					}
+				}
+			}
+		}
+	}
+
+	.app-content-list {
+		border-left: 1px solid var(--color-border);
+		border-right: none;
+
+		.app-content-list-item {
+			.app-content-list-item-checkbox.checkbox {
+				+ label {
+					right: 7px;
+					left: auto;
+				}
+			}
+
+			.app-content-list-item-star {
+				right: 32px;
+				left: auto;
+			}
+
+			.app-content-list-item-icon {
+				margin-left: 10px;
+			}
+
+			.app-content-list-item-line-one,
+			.app-content-list-item-line-two {
+				padding-right: 50px;
+				padding-left: 10px;
+			}
+
+			.app-content-list-item-menu {
+				.popovermenu {
+					left: -2px;
+					right: auto;
+				}
+			}
+		}
+	}
+}
+// Ali-Changes-End

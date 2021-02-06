@@ -207,10 +207,12 @@ export const initCore = () => {
 	if ($('#app-navigation').length && !$('html').hasClass('lte9')
 		&& !$('#app-content').hasClass('no-snapper')) {
 
+		// Ali-Changed-Start
+		const lang = String(OC.getLanguage()).toLowerCase()
 		// App sidebar on mobile
 		const snapper = new Snap({
 			element: document.getElementById('app-content'),
-			disable: 'right',
+			disable: ['fa', 'fa_ir'].includes(lang) ? 'left' : 'right',
 			maxPosition: 300, // $navigation-width
 			minDragDistance: 100,
 		})
@@ -218,12 +220,13 @@ export const initCore = () => {
 		$('#app-content').prepend('<div id="app-navigation-toggle" class="icon-menu" style="display:none" tabindex="0"></div>')
 
 		const toggleSnapperOnButton = () => {
-			if (snapper.state().state === 'left') {
+			if (snapper.state().state !== 'closed') {
 				snapper.close()
 			} else {
-				snapper.open('left')
+				snapper.open(['fa', 'fa_ir'].includes(lang) ? 'right' : 'left')
 			}
 		}
+		// Ali-Changed-End
 
 		$('#app-navigation-toggle').click(toggleSnapperOnButton)
 		$('#app-navigation-toggle').keypress(e => {

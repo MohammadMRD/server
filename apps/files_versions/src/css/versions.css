@@ -64,3 +64,22 @@
 	float: right;
 	margin-right: -10px;
 }
+
+/* Ali-Changes-Start */
+html[lang="fa"] .versionsTabView li {
+	float: right;
+}
+
+html[lang="fa"] .versionsTabView img {
+	padding-left: 4px;
+}
+
+html[lang="fa"] .versionsTabView .version-details {
+	text-align: right;
+}
+
+html[lang="fa"] .versionsTabView .revertVersion {
+	float: left;
+	margin-left: -10px;
+}
+/* Ali-Changes-End */

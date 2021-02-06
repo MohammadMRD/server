@@ -137,3 +137,11 @@
     border-color: transparent;
     border-style: solid;
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+    .tooltip {
+        text-align: right;
+    }
+}
+// Ali-Changes-End

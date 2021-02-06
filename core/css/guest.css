@@ -920,3 +920,145 @@ label.infield,
 a.legal {
 	font-size: smaller;
 }
+
+/* Ali-Changes-Start */
+html[lang="fa"] caption,
+html[lang="fa"] th,
+html[lang="fa"] td {
+	text-align:right;
+}
+
+html[lang="fa"] #header .logo {
+	right: unset;
+}
+
+html[lang="fa"] #alternative-logins a.button::before {
+	margin-left: 0;
+}
+
+html[lang="fa"] #submit-wrapper .submit-icon,
+html[lang="fa"] #reset-password-wrapper .submit-icon {
+	left: 24px;
+	transition: left 100ms ease-in-out;
+}
+
+html[lang="fa"] #submit-wrapper input.login:hover ~ .submit-icon.icon-confirm-white,
+html[lang="fa"] #submit-wrapper input.login:focus ~ .submit-icon.icon-confirm-white,
+html[lang="fa"] #submit-wrapper input.login:active ~ .submit-icon.icon-confirm-white {
+	right: auto;
+	left: 20px;
+}
+
+html[lang="fa"] #submit-wrapper .icon-loading-small {
+	left: 26px;
+	right: auto;
+}
+
+html[lang="fa"] input[type='password'].password-with-toggle,
+html[lang="fa"] input[type='text'].password-with-toggle {
+	padding-left: 40px;
+	padding-right: unset;
+}
+
+html[lang="fa"] .toggle-password {
+	left: 20px;
+	right: auto;
+}
+
+html[lang="fa"] input.login {
+	background-position: left 16px center;
+}
+
+html[lang="fa"] input[type='checkbox'].checkbox {
+	right: -10000px;
+	left: auto;
+}
+
+html[lang="fa"] .strengthify-wrapper {
+	right: 5px;
+	left: auto;
+}
+
+html[lang="fa"] #show,
+html[lang="fa"] #dbpassword-toggle {
+	left: 1em;
+	float: left;
+}
+
+html[lang="fa"] #show + label,
+html[lang="fa"] #dbpassword-toggle + label {
+	left: 21px;
+	right: auto;
+}
+
+html[lang="fa"] #pass2,
+html[lang="fa"] input[name='personal-password-clone'] {
+	padding: .6em .4em .4em 2.5em;
+}
+
+html[lang="fa"] #personal-show + label {
+	right: 295px;
+	left: auto;
+}
+
+html[lang="fa"] #passwordbutton {
+	margin-right: .5em;
+}
+
+html[lang="fa"] .two-factor-provider {
+	text-align: right;
+}
+
+html[lang="fa"] #remember_login {
+	margin: 18px 16px 0 5px !important;
+}
+
+html[lang="fa"] #forgot-password {
+	float: left;
+}
+
+html[lang="fa"] .body-login-container,
+html[lang="fa"] .warning,
+html[lang="fa"] .update,
+html[lang="fa"] .error {
+	text-align: right;
+}
+
+html[lang="fa"] .error pre {
+	text-align: right;
+}
+
+html[lang="fa"] .update .appList {
+	text-align: right;
+}
+
+html[lang="fa"] .update img.float-spinner {
+	float: right;
+}
+
+html[lang="fa"] #update-progress-detailed {
+	text-align: right;
+}
+
+html[lang="fa"] .loading:after,
+html[lang="fa"] .loading-small:after,
+html[lang="fa"] .icon-loading:after,
+html[lang="fa"] .icon-loading-dark:after,
+html[lang="fa"] .icon-loading-small:after,
+html[lang="fa"] .icon-loading-small-dark:after {
+	margin: -17px -17px 0 0;
+	right: 50%;
+	left: auto;
+}
+
+html[lang="fa"] .icon-loading-small:after,
+html[lang="fa"] .icon-loading-small-dark:after {
+	margin: -9px -9px 0 0;
+}
+
+label.infield,
+.hidden-visually {
+	right:-10000px;
+	left: auto;
+}
+/* Ali-Changes-End */

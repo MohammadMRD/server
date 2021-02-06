@@ -294,3 +294,18 @@ input.primary,
 		height: 92px;
 	}
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	input:focus {
+		margin-left: 3px;
+		margin-right: 3px;
+	}
+
+	input#theming-imprintUrl,
+	input#theming-privacyUrl,
+	input#theming-url {
+		direction: ltr;
+	}
+}
+// Ali-Changes-End

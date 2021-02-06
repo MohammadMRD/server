@@ -32,3 +32,13 @@ div.crumb span.icon-shared.shared,
 div.crumb span.icon-public.shared {
 	opacity: 0.7;
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	div.crumb span.icon-shared,
+	div.crumb span.icon-public {
+		margin-left: 6px;
+		margin-right: 0;
+	}
+}
+// Ali-Changes-End

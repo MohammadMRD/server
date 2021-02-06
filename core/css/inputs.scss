@@ -960,3 +960,168 @@ label.infield {
 ::-webkit-input-placeholder {
 	color: var(--color-text-maxcontrast);
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	div[contenteditable=true], .pager li a {
+		margin: 3px 0 3px 3px;
+	}
+
+	div[contenteditable=false] {
+		margin: 3px 0 3px 3px;
+	}
+
+	select {
+		background: var(--icon-triangle-s-000) no-repeat left 4px center;
+		padding-left: 24px !important;
+	}
+
+	input {
+		&[type='text'],
+		&[type='password'],
+		&[type='email'] {
+			+ .icon-confirm {
+				margin-right: -8px !important;
+				// border-right-color: transparent !important;
+				// border-left-color: var(--color-border-dark) !important;
+				// border-radius: 3px 0 0 3px !important;
+				margin-left: 0;
+				transform: scaleX(-1);
+			}
+		}
+		&:active,
+		&:hover,
+		&:focus {
+			+ .icon-confirm {
+				// border-right-color: transparent !important;
+				// border-left-color: var(--color-primary-element) !important;
+			}
+		}
+	}
+
+	input {
+		&[type='checkbox'],
+		&[type='radio'] {
+			&.radio,
+			&.checkbox {
+				right: -10000px;
+
+				+ label:before {
+					margin: 0 3px 3px 6px;
+				}
+
+				& + label ~ em {
+					margin-right: 25px;
+				}
+			}
+		}
+	}
+
+	div.select2-drop {
+		.avatar {
+			margin-left: 8px;
+		}
+
+		.select2-search input {
+			background: var(--icon-search-000) no-repeat left center !important;
+		}
+	}
+
+	div.select2-container-multi {
+		.select2-choices,
+		&.select2-container-active .select2-choices {
+			.select2-search-choice {
+				padding-right: 5px;
+			}
+		}
+	}
+
+	div.select2-container {
+		margin: 3px 0 3px 3px;
+
+		a.select2-choice {
+			padding-right: 6px;
+
+			.select2-search-choice {
+				padding-right: 5px;
+			}
+		}
+	}
+
+	.v-select {
+		margin: 3px 0 3px 3px;
+
+		.dropdown-toggle {
+			.selected-tag {
+				padding-right: 5px;
+
+				.close {
+					margin-right: 3px;
+				}
+			}
+		}
+
+		.dropdown-menu {
+			li {
+				a {
+					padding: 3px 2px 4px 7px;
+
+					&::before {
+						margin-left: 5px;
+					}
+				}
+			}
+		}
+	}
+
+	.multiselect.multiselect-vue {
+		.multiselect__tags {
+			.multiselect__tags-wrap {
+				.multiselect__tag {
+					&:not(:last-child) {
+						margin-left: $space-between;
+					}
+				}
+			}
+
+			.multiselect__limit {
+				margin-left: $space-between;
+			}
+		}
+
+		.multiselect__content-wrapper {
+			li {
+				> span {
+					&::before {
+						margin-left: 5px;
+					}
+				}
+			}
+		}
+	}
+
+	@keyframes shake {
+		10%,
+		90% {
+			transform: translate(1px);
+		}
+		20%,
+		80% {
+			transform: translate(-2px);
+		}
+		30%,
+		50%,
+		70% {
+			transform: translate(4px);
+		}
+		40%,
+		60% {
+			transform: translate(-4px);
+		}
+	}
+
+	label.infield {
+		right:-10000px;
+	}
+}
+// Ali-Changes-End

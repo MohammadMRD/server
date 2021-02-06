@@ -58,3 +58,18 @@ table td.filename .nametext {
 	margin-top: 10vh;
 }
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	@media only screen and (max-width: $breakpoint-mobile) {
+		#fileList a.action img {
+			padding: 0 12px 0 6px;
+		}
+
+		#header .menutoggle {
+			padding-left: 14px;
+			padding-right: 0;
+		}
+	}
+}
+// Ali-Changes-End

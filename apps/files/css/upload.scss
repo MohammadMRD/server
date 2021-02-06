@@ -209,3 +209,71 @@
   0% { background-color: rgba(255, 255, 140, 1); }
   100% { background-color: rgba(0, 0, 0, 0); }
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	#upload {
+		margin-right: 3px;
+	}
+
+	.file_upload_form {
+		float:right;
+	}
+
+	#uploadprogresswrapper {
+		margin-right: 3px;
+	}
+
+	#uploadprogresswrapper > input[type='button'] {
+		margin-right: 3px;
+	}
+
+	#uploadprogressbar {
+		border-radius: 0 18px 18px 0;
+		border-left: 0;
+		float: right;
+	}
+
+	#uploadprogressbar .ui-progressbar-value.ui-widget-header.ui-corner-left {
+		right: -1px;
+		left: auto;
+	}
+
+	.oc-dialog .fileexists th input[type='checkbox'] {
+		margin-left: 3px;
+	}
+
+	.oc-dialog .fileexists th .count {
+		margin-right: 3px;
+	}
+
+	.oc-dialog .fileexists .conflict .filename {
+		clear: right;
+	}
+
+	.oc-dialog .fileexists .icon {
+		float: right;
+	}
+
+	.oc-dialog .fileexists .original,
+	.oc-dialog .fileexists .replacement {
+		float: right;
+	}
+
+	.oc-dialog .fileexists .conflict input[type='checkbox'] {
+		float: right;
+	}
+
+	.oc-dialog .fileexists #allfileslabel {
+		float:left;
+	}
+
+	.oc-dialog .oc-dialog-buttonrow {
+		text-align:left;
+
+		.cancel {
+			float:right;
+		}
+	}
+}
+// Ali-Changes-End

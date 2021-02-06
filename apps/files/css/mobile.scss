@@ -86,3 +86,34 @@ table.dragshadow {
 		margin-left: 0;
 	}
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	table.multiselect thead {
+		padding-right: 0;
+	}
+
+	#fileList a.action.action-menu img {
+		padding-right: 0;
+	}
+
+	#fileList .fileActionsMenu {
+		margin-left: 6px;
+	}
+
+	#fileList a.action-share span:not(.icon):not(.avatar) {
+		right:-10000px;
+		left: auto;
+	}
+
+	@media only screen and (max-width: 480px)  {
+		table th .selectedActions {
+			float: left;
+		}
+
+		table.multiselect th .columntitle.name {
+			margin-right: 0;
+		}
+	}
+}
+// Ali-Changes-End

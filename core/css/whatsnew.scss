@@ -29,3 +29,17 @@
 .whatsNewPopover::after {
   content: none;
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+  .whatsNewPopover {
+    right: 15px !important;
+    left: auto !important;
+  }
+
+  .whatsNewPopover .icon-close {
+    left: 0;
+    right: auto;
+  }
+}
+// Ali-Changes-End

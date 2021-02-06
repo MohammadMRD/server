@@ -86,3 +86,21 @@
 #select2-drop.systemtags-select2-dropdown .select2-results li.select2-result {
 	padding: 5px;
 }
+
+// Ali-Changes-Start
+html[lang="fa"] {
+	.systemtags-select2-dropdown {
+		.select2-result-label {
+			.checkmark {
+				margin-right: -5px;
+				margin-left: 5px;
+			}
+		}
+
+		.systemtags-actions {
+			left: 5px;
+			right: auto;
+		}
+	}
+}
+// Ali-Changes-End
